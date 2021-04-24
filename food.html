@@ -93,13 +93,34 @@
       }
 
   $( document ).ready(function() {
+      let dropdown = $('#location_list');
+      dropdown.empty();
+      dropdown.append('<option selected="true" disabled>Select a Location</option>');
+      dropdown.prop('selectedIndex', 0);
+      var url = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
+    
+      let xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+      let data = JSON.parse(this.responseText).feed.entry
+        let i;
+      for (i = 0; i < data.length; i++) {
+      dropdown.append($('<option></option>').attr('value', data[i]["gs$cell"]["$t"]).text(data[i]["gs$cell"]["$t"]));
+      }
+    };
+  }
+      xmlhttp.open(
+      "GET",
+      "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json",
+       true
+      );
+      xmlhttp.send();
+      });
       $("#location_list").change(function(){
         var val = $(this).val();
         search(val);
       });
   });
-
-  </script> 
 </section>
 </body>
 </html>
