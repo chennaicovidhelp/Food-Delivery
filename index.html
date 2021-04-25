@@ -29,8 +29,8 @@
       <p class="lead mb-4">Please select the type of service in the search box below</p>
       <select class="form-select" id="service_list" aria-label="Default select example" >
         <option value="" selected>Select a Service</option>
-        <option value="Paid">Paid</option>
-        <option value="Free">Free</option>
+        <option value="Home Delivered Food (Paid)">Home Delivered Food (Paid)</option>
+        <option value="COVID Meal Program">COVID Meal Program</option>
       </select>
       <p class="lead mb-4"></p>
       <p id="headerlist" class="lead mb-4">Please select your area in the search box below</p>
@@ -66,6 +66,9 @@
     var paidQuery = 'select B,D,E,F,G,H,I where lower(E) contains ';
     var freeQuery = 'select B,C,D,E,F,G,H,I,J,K where lower(A) contains ';
 
+    var paidService = 'Home Delivered Food (Paid)';
+    var freeService = 'COVID Meal Program';
+    
 
     function search(val, spreadsheet, squery){
       $('#results').hide();
@@ -118,12 +121,12 @@
     $("#service_list").change(function(){
       $('#headerlist').show();
       var val = $(this).val();
-      if( val!= "Free") {
+      if( val == paidService) {
       $('#paid_location_list').prop('selectedIndex', 0);
       $('#paid_location_list').show();
       $('#free_location_list').hide();
       }
-      else{
+      else if(val == freeService){
       $('#free_location_list').prop('selectedIndex', 0);
       $('#free_location_list').show();
       $('#paid_location_list').hide();
@@ -142,12 +145,14 @@
 
   </script>
 </div>
+
 <div class="px-4 py-5 my-5 text-center">
   <hr/>
   <p class="lead mb-4 mt-20" style="font-size:14px">
     This information is crowd-sourced. Availability depends on the service provider(s).<br/>
     Some of these services are free, whereas others are to be paid for. Kindly check for delivery charges; if any exist, please pay the service provider directly.<br/>
-    For all covid-related resources, please visit <a href="http://www.chennaicovidhelp.in/" target="_blank">http://www.chennaicovidhelp.in/</a>| <a href="https://www.instagram.com/covid19chennai/" target="_blank">@covid19chennai</a>
+    For all covid-related resources, please visit <a href="http://www.chennaicovidhelp.in/" target="_blank">http://www.chennaicovidhelp.in/</a>| <a href="https://www.instagram.com/covid19chennai/" target="_blank">@covid19chennai</a><br/>
+    Credits : <a href="https://instagram.com/capturesbymurshitha" target="_blank">Murshitha</a>, <a href="https://instagram.com/foodtravelfaz" target="_blank">Fazil</a>, <a href="https://instagram.com/harshnisreedhar" target="_blank">Harshini</a> & <a href="https://www.instagram.com/shyamsundark/" target="_blank">Shyam</a> | Development : <a href="https://instagram.com/jayalakshmi.krishnan" target="_blank">Jayalakshmi</a>
 </p> 
 </div>
 </div>
