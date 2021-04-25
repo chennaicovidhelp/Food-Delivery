@@ -75,7 +75,6 @@
       $('#people').empty();
       if(val != ""){
         squery = squery + "'"+ val.toLowerCase() +"'";
-
         $('#people').sheetrock({
           url: spreadsheet,
           query: squery,
@@ -110,6 +109,16 @@
     }
 
     $( document ).ready(function() {
+      $('.scrollToTop').hide();
+      //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 80) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+
       $('#paid_location_list').hide();
       $('#free_location_list').hide();
       $('#results').hide();
@@ -145,7 +154,15 @@
 
   </script>
 </div>
-
+<div>
+    <a href="#top" class="scrollToTop" style="position: absolute;right: 0;color: black;"><button class="scrollToTopBtn" style="position: absolute;right: 0;">^</button></a>
+  <script>
+       $("a[href='#top']").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
+  </script>
+</div>
 <div class="px-4 py-5 my-5 text-center">
   <hr/>
   <p class="lead mb-4 mt-20" style="font-size:14px">
