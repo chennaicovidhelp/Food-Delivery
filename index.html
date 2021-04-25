@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
-  <title>food | food-delivery</title>
+  <title>Chennai Covid Help - Food</title>
   <meta name="generator" content="Jekyll v3.9.0" />
   <meta property="og:title" content="food" />
   <meta property="og:locale" content="en_US" />
@@ -26,8 +26,18 @@
   <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
     <div class="col-lg-6 mx-auto">
-      <p class="lead mb-4">Please see the complete list below or select your area in the search box below</p>
-      <select class="form-select" id="location_list" aria-label="Default select example" >
+      <p class="lead mb-4">Please select the type of service in the search box below</p>
+      <select class="form-select" id="service_list" aria-label="Default select example" >
+        <option value="" selected>Select a Service</option>
+        <option value="Paid">Paid</option>
+        <option value="Free">Free</option>
+      </select>
+      <p class="lead mb-4"></p>
+      <p id="headerlist" class="lead mb-4">Please select your area in the search box below</p>
+      <select class="form-select" id="paid_location_list" aria-label="Default select example" >
+        <option value="" selected>Select a location</option>
+      </select>
+      <select class="form-select" id="free_location_list" aria-label="Default select example" >
         <option value="" selected>Select a location</option>
       </select>
     </div>
@@ -47,18 +57,25 @@
 
 
   <script type="text/javascript">
-    var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/edit#gid=0';
+    var paidSpreadsheet = 'https://docs.google.com/spreadsheets/d/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/edit#gid=0';
+    var freeSpreadsheet = 'https://docs.google.com/spreadsheets/d/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/edit#gid=1245749826';
+    
+    var paidAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
+    var freeAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/4/public/full?alt=json";
+    
+    var paidQuery = 'select B,D,E,F,G,H,I where lower(E) contains ';
+    var freeQuery = 'select B,C,D,E,F,G,H,I,J,K where lower(A) contains ';
 
-    function search(val){
+
+    function search(val, spreadsheet, squery){
       $('#results').hide();
       $('#people').empty();
-
       if(val != ""){
-        query = "select B,D,E,F,G,H,I where lower(E) contains '"+ val.toLowerCase() +"'";
+        squery = squery + "'"+ val.toLowerCase() +"'";
 
         $('#people').sheetrock({
-          url: mySpreadsheet,
-          query: query,
+          url: spreadsheet,
+          query: squery,
           reset: true
         });
 
@@ -66,12 +83,10 @@
       }
     }
 
-    $( document ).ready(function() {
-      let dropdown = $('#location_list');
+    function getAreaDropdown(dropdown, url){
       dropdown.empty();
       dropdown.append('<option selected="true" disabled>Select a Location</option>');
       dropdown.prop('selectedIndex', 0);
-      var url = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
 
       let xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function () {
@@ -85,16 +100,53 @@
       }
       xmlhttp.open(
         "GET",
-        "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json",
+          url,
         true
       );
-      xmlhttp.send();
+      xmlhttp.send(); 
+    }
+
+    $( document ).ready(function() {
+      $('#paid_location_list').hide();
+      $('#free_location_list').hide();
+      $('#results').hide();
+      $('#headerlist').hide();
+      getAreaDropdown( $('#paid_location_list'), paidAreas);
+      getAreaDropdown( $('#free_location_list'), freeAreas);
+
     });
-    $("#location_list").change(function(){
+    $("#service_list").change(function(){
+      $('#headerlist').show();
       var val = $(this).val();
-      search(val);
+      if( val!= "Free") {
+      $('#paid_location_list').show();
+      $('#free_location_list').hide();
+      }
+      else{
+      $('#free_location_list').show();
+      $('#paid_location_list').hide();
+      }
     });
+
+    $("#paid_location_list").change(function(){
+      var val = $(this).val();
+      search(val, paidSpreadsheet, paidQuery);
+    });
+    $("#free_location_list").change(function(){
+      var val = $(this).val();
+      search(val, freeSpreadsheet, freeQuery);
+    });
+
   </script>
+</div>
+<div class="px-4 py-5 my-5 text-center">
+  <hr/>
+  <p class="lead mb-4 mt-20" style="font-size:14px">
+    This information is crowd-sourced. Availability depends on the service provider(s).<br/>
+    Some of these services are free, whereas others are to be paid for. Kindly check for delivery charges; if any exist, please pay the service provider directly.<br/>
+    For all covid-related resources, please visit <a href="http://www.chennaicovidhelp.in/" target="_blank">http://www.chennaicovidhelp.in/</a>| <a href="https://www.instagram.com/covid19chennai/" target="_blank">@covid19chennai</a>
+</p> 
+</div>
 </div>
 </body>
 </html>
