@@ -119,13 +119,16 @@
       $('#headerlist').show();
       var val = $(this).val();
       if( val!= "Free") {
+      $('#paid_location_list').prop('selectedIndex', 0);
       $('#paid_location_list').show();
       $('#free_location_list').hide();
       }
       else{
+      $('#free_location_list').prop('selectedIndex', 0);
       $('#free_location_list').show();
       $('#paid_location_list').hide();
       }
+      $('#results').hide();
     });
 
     $("#paid_location_list").change(function(){
