@@ -63,18 +63,23 @@
     var paidAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
     var freeAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/4/public/full?alt=json";
     
-    var paidQuery = 'select B,D,E,F,G,H,I where lower(E) contains ';
+    var paidQuery = 'select B,D,E,F,G,H,I where lower(F) contains ';
     var freeQuery = 'select B,C,D,E,F,G,H,I,J,K where lower(A) contains ';
+
+    var paidFullQuery = 'select B,D,E,F,G,H,I';
+    var freeFullQuery = 'select A,B,C,D,E,F,G,H,I,J,K';
 
     var paidService = 'Home Delivered Food (Paid)';
     var freeService = 'COVID Meal Program';
+    var viewFullList = 'View Full List'
     
 
     function search(val, spreadsheet, squery){
       $('#results').hide();
       $('#people').empty();
       if(val != ""){
-        squery = squery + "'"+ val.toLowerCase() +"'";
+        if(val != viewFullList)
+          squery = squery + "'"+ val.toLowerCase() +"'";
         $('#people').sheetrock({
           url: spreadsheet,
           query: squery,
@@ -145,10 +150,16 @@
 
     $("#paid_location_list").change(function(){
       var val = $(this).val();
+      if(val == viewFullList)
+      search(val, paidSpreadsheet, paidFullQuery);
+      else
       search(val, paidSpreadsheet, paidQuery);
     });
     $("#free_location_list").change(function(){
       var val = $(this).val();
+      if(val == viewFullList)
+      search(val, freeSpreadsheet, freeFullQuery);
+      else
       search(val, freeSpreadsheet, freeQuery);
     });
 
