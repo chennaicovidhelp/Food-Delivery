@@ -26,13 +26,15 @@
   <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
     <div class="col-lg-6 mx-auto">
+      <br/>
       <p class="lead mb-4">Please select the type of service in the search box below</p>
       <select class="form-select" id="service_list" aria-label="Default select example" >
         <option value="" selected>Select a Service</option>
         <option value="Home Delivered Food (Paid)">Home Delivered Food (Paid)</option>
         <option value="COVID Meal Program">COVID Meal Program</option>
       </select>
-      <p class="lead mb-4"></p>
+      <br/>
+      <br/>
       <p id="headerlist" class="lead mb-4">Please select your area in the search box below</p>
       <select class="form-select" id="paid_location_list" aria-label="Default select example" >
         <option value="" selected>Select a location</option>
@@ -145,6 +147,11 @@
       $('#free_location_list').show();
       $('#paid_location_list').hide();
       }
+      else{
+        $('#headerlist').hide();
+        $('#paid_location_list').hide();
+        $('#free_location_list').hide();
+      }
       $('#results').hide();
     });
 
@@ -175,6 +182,11 @@
   </script>
 </div>
 <div class="px-4 py-5 my-5 text-center">
+  <div class="px-4 py-5 my-5 text-center">
+    <p class="lead mb-4" style="font-size:18px">Please click here, if you are:</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdK_hnJeFF_84QnhbpLTcI_z2RcFGjScFqmUyGlnfm-excaxw/viewform" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   A Meal Provider &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </button></a>&nbsp;&nbsp;
+    <a href="https://docs.google.com/forms/d/1IQQmP4Z7xDqfnTqBHHZScy4muNoR9lhQ7pOG2BXYvYI/viewform?edit_requested=true" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">Looking for a Food Donor</button></a>
+  </div>
   <hr/>
   <p class="lead mb-4 mt-20" style="font-size:14px">
     This information is crowd-sourced. Availability depends on the service provider(s).<br/>
