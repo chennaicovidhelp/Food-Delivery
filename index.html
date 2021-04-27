@@ -20,9 +20,24 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
+  <div id="google_translate_element"></div>
+
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {pageLanguage: 'en', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        includedLanguages:'ta,hi,te,kn,en'},
+        'google_translate_element'
+    );      
+}
+</script>
+
 <div class="header">
+  <div id="google_translate_element"></div>
   <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
     <div class="col-lg-6 mx-auto">
@@ -116,6 +131,12 @@
     }
 
     $( document ).ready(function() {
+      function googleTranslateElementInit() {
+
+       new google.translate.TranslateElement({ pageLanguage:'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay:false },'google_translate_element');
+
+    }
+
       $('.scrollToTop').hide();
       //Check to see if the window is top if not then display button
     $(window).scroll(function(){
