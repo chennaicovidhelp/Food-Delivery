@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
+  <title>Chennai Covid Help - Food</title>
+  <meta name="generator" content="Jekyll v3.9.0" />
+  <meta property="og:title" content="food" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="canonical" href="https://covidhelp.github.io/" />
+  <meta property="og:url" content="https://covidhelp.github.io/" />
+  <meta property="og:site_name" content="food-delivery" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="twitter:title" content="food" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+<body>
+
+<header>
+    <div id="google_translate_element"></div>
+<script>
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {pageLanguage: 'en', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        includedLanguages:'ta,hi,te,kn,en'},
+        'google_translate_element'
+    );      
+}
+</script>
+</header>
+
+<div class="header"></div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
+    <div class="col-lg-6 mx-auto">
+      <br/>
+      <select class="form-select" id="service_list" aria-label="Default select example" >
+        <option value="Home Delivered Food (Paid)" selected>Home Delivered Food (Paid)</option>
+      </select>
+      <br/>
+      <br/>
+      <p id="headerlist" class="lead mb-4">Please select your area in the search box below</p>
+      <select class="form-select" id="paid_location_list" aria-label="Default select example" >
+        <option value="" selected>Select a location</option>
+      </select>
+    </div>
+   
+  </div>
+</div>
+<div class="container">
+  <div id="results" class="px-4 py-5 my-5 text-center" style="display:none">
+
+    <h3 class="display-8 fw-bold">List of volunteers</h3>
+    <p class="lead mb-4">Below is the list of people who are available in your selected area</p>
+
+    <div>
+      <table id="people" class="table table-condensed table-striped table-responsive"></table>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+    var paidSpreadsheet = 'https://docs.google.com/spreadsheets/d/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/edit#gid=0';
+    
+    var paidAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
+    
+    var paidQuery = 'select B,D,E,F,G,H,I where lower(F) contains ';
+ 
+
+    var paidFullQuery = 'select B,D,E,F,G,H,I';
+
+    var paidService = 'Home Delivered Food (Paid)';
+
+    var viewFullList = 'View Full List'
+    
+
+    function search(val, spreadsheet, squery){
+      $('#results').hide();
+      $('#people').empty();
+      if(val != ""){
+        if(val != viewFullList)
+          squery = squery + "'"+ val.toLowerCase() +"'";
+        $('#people').sheetrock({
+          url: spreadsheet,
+          query: squery,
+          reset: true
+        });
+
+        $('#results').show();
+      }
+    }
+
+    function getAreaDropdown(dropdown, url){
+      dropdown.empty();
+      dropdown.append('<option selected="true" disabled>Select a Location</option>');
+      dropdown.prop('selectedIndex', 0);
+
+      let xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          let data = JSON.parse(this.responseText).feed.entry
+          let i;
+          for (i = 0; i < data.length; i++) {
+            dropdown.append($('<option></option>').attr('value', data[i]["gs$cell"]["$t"]).text(data[i]["gs$cell"]["$t"]));
+          }
+        };
+      }
+      xmlhttp.open(
+        "GET",
+          url,
+        true
+      );
+      xmlhttp.send(); 
+    }
+
+    $( document ).ready(function() {
+      function googleTranslateElementInit() {
+
+       new google.translate.TranslateElement({ pageLanguage:'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay:false },'google_translate_element');
+
+    }
+
+      $('.scrollToTop').hide();
+      //Check to see if the window is top if not then display button
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 80) {
+            $('.scrollToTop').fadeIn();
+        } else {
+            $('.scrollToTop').fadeOut();
+        }
+    });
+      $('#results').hide();
+      getAreaDropdown( $('#paid_location_list'), paidAreas);
+
+    });
+    $("#service_list").change(function(){
+      $('#headerlist').show();
+      var val = $(this).val();
+      if( val == paidService) {
+      $('#paid_location_list').prop('selectedIndex', 0);
+      $('#paid_location_list').show();
+      }
+      else{
+        $('#headerlist').hide();
+        $('#paid_location_list').hide();
+      }
+      $('#results').hide();
+    });
+
+    $("#paid_location_list").change(function(){
+      var val = $(this).val();
+      if(val == viewFullList)
+      search(val, paidSpreadsheet, paidFullQuery);
+      else
+      search(val, paidSpreadsheet, paidQuery);
+    });
+
+  </script>
+</div>
+<div>
+    <a href="#top" class="scrollToTop" style="position: absolute;right: 0;color: black;"><button class="scrollToTopBtn" style="position: absolute;right: 0;">^</button></a>
+  <script>
+       $("a[href='#top']").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
+  });
+  </script>
+</div>
+<div class="px-4 py-5 my-5 text-center">
+  <div class="px-4 py-5 my-5 text-center">
+    <p class="lead mb-4" style="font-size:18px">Please click here, if you are:</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdK_hnJeFF_84QnhbpLTcI_z2RcFGjScFqmUyGlnfm-excaxw/viewform" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   A Meal Provider &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </button></a>&nbsp;&nbsp;
+    <a href="https://docs.google.com/forms/d/1IQQmP4Z7xDqfnTqBHHZScy4muNoR9lhQ7pOG2BXYvYI/viewform?edit_requested=true" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">Looking for a Food Donor</button></a>
+  </div>
+  <hr/>
+  <p class="lead mb-4 mt-20" style="font-size:14px">
+    This information is crowd-sourced. Availability depends on the service provider(s).<br/>
+    Some of these services are free, whereas others are to be paid for. Kindly check for delivery charges; if any exist, please pay the service provider directly.<br/>
+    For all covid-related resources, please visit <a href="http://www.chennaicovidhelp.in/" target="_blank">http://www.chennaicovidhelp.in/</a> | <a href="https://www.instagram.com/covid19chennai/" target="_blank">@covid19chennai</a><br/>
+    Credits : <a href="https://instagram.com/capturesbymurshitha" target="_blank">Murshitha</a>, <a href="https://instagram.com/foodtravelfaz" target="_blank">Fazil</a>, <a href="https://instagram.com/harshnisreedhar" target="_blank">Harshini</a>| Development : <a href="https://instagram.com/jayalakshmi.krishnan" target="_blank">Jayalakshmi</a>
+</p> 
+</div>
+</div>
+</body>
+</html>
