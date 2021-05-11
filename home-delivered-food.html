@@ -42,12 +42,7 @@ function googleTranslateElementInit() {
   <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
     <div class="col-lg-6 mx-auto">
-      <br/>
-      <select class="form-select" id="service_list" aria-label="Default select example" >
-        <option value="Home Delivered Food (Paid)" selected>Home Delivered Food (Paid)</option>
-      </select>
-      <br/>
-      <br/>
+
       <p id="headerlist" class="lead mb-4">Please select your area in the search box below</p>
       <select class="form-select" id="paid_location_list" aria-label="Default select example" >
         <option value="" selected>Select a location</option>
@@ -59,9 +54,9 @@ function googleTranslateElementInit() {
 <div class="container">
   <div id="results" class="px-4 py-5 my-5 text-center" style="display:none">
 
-    <h3 class="display-8 fw-bold">List of volunteers</h3>
+    <h3 class="display-8 fw-bold">List of Services</h3>
     <p class="lead mb-4">Below is the list of people who are available in your selected area</p>
-
+    <p id="disclaimer" style="font-size: 14px;align-self: center;"><b>*Note*:</b> To anyone who is covid positive and uses delivery platforms (Dunzo, Genie etc), you are required to inform the delivery executive <br/> of your infection status in order to prevent being a potential risk to the delivery executives. </p>
     <div>
       <table id="people" class="table table-condensed table-striped table-responsive"></table>
     </div>
@@ -75,13 +70,42 @@ function googleTranslateElementInit() {
     var paidAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
     
     var paidQuery = 'select B,D,E,F,G,H,I where lower(F) contains ';
- 
 
     var paidFullQuery = 'select B,D,E,F,G,H,I';
 
     var paidService = 'Home Delivered Food (Paid)';
-
+    var freeService = 'COVID Meal Program';
     var viewFullList = 'View Full List'
+
+    function add_phone_numbers(error, options, response){
+        if (!error) {
+          var tbody = document.createElement('tbody'); 
+
+          rows = response.rows;     
+
+          rows.forEach(function (row, row_index) {
+
+            var tr = document.createElement('tr');
+            row.cellsArray.forEach(function (cell, cell_index) {
+              var td = document.createElement('td');
+              tr.appendChild(td);
+              var clean_text = cell.trim();
+              //find valid phone numbers in cell data annd add whatsapp link to it
+              if(clean_text.match(/^\d{10}$/)){
+                  td.innerHTML = "<a href='tel:"+cell+"'"+"target='_blank'>"+cell+"</a>";
+                } else {
+                td.innerHTML = cell;
+              } 
+              if(row_index==0)
+              td.innerHTML = "<b>"+cell+"</b>";
+            });
+            tbody.appendChild(tr);
+
+          });
+          $('#people').empty();
+          document.getElementById('people').appendChild(tbody);  
+        }
+      }
     
 
     function search(val, spreadsheet, squery){
@@ -93,9 +117,9 @@ function googleTranslateElementInit() {
         $('#people').sheetrock({
           url: spreadsheet,
           query: squery,
-          reset: true
+          reset: true,
+          callback: add_phone_numbers
         });
-
         $('#results').show();
       }
     }
@@ -140,31 +164,19 @@ function googleTranslateElementInit() {
         }
     });
       $('#results').hide();
+      $('#disclaimer').hide();
       getAreaDropdown( $('#paid_location_list'), paidAreas);
 
     });
-    $("#service_list").change(function(){
-      $('#headerlist').show();
-      var val = $(this).val();
-      if( val == paidService) {
-      $('#paid_location_list').prop('selectedIndex', 0);
-      $('#paid_location_list').show();
-      }
-      else{
-        $('#headerlist').hide();
-        $('#paid_location_list').hide();
-      }
-      $('#results').hide();
-    });
 
     $("#paid_location_list").change(function(){
+      $('#disclaimer').show();
       var val = $(this).val();
       if(val == viewFullList)
       search(val, paidSpreadsheet, paidFullQuery);
       else
       search(val, paidSpreadsheet, paidQuery);
     });
-
   </script>
 </div>
 <div>
@@ -181,6 +193,9 @@ function googleTranslateElementInit() {
     <p class="lead mb-4" style="font-size:18px">Please click here, if you are:</p>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdK_hnJeFF_84QnhbpLTcI_z2RcFGjScFqmUyGlnfm-excaxw/viewform" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   A Meal Provider &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </button></a>&nbsp;&nbsp;
     <a href="https://docs.google.com/forms/d/1IQQmP4Z7xDqfnTqBHHZScy4muNoR9lhQ7pOG2BXYvYI/viewform?edit_requested=true" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">Looking for a Food Donor</button></a>
+    <br/>
+    <br/>
+    <p class="lead mb-4" style="font-size:18px">Please click here for  <a href="http://bit.ly/mealsformadras" target="_blank" style="font-size:18px"> Meals for Madras (Covid Food Program)</a></p>
   </div>
   <hr/>
   <p class="lead mb-4 mt-20" style="font-size:14px">
