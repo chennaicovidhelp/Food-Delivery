@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
-  <title>Chennai Covid Help - Food</title>
+  <title>Food Help Chennai</title>
   <meta name="generator" content="Jekyll v3.9.0" />
   <meta property="og:title" content="food" />
   <meta property="og:locale" content="en_US" />
@@ -20,40 +20,76 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css"/>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"/>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
-
-<header>
-    <div id="google_translate_element"></div>
-<script>
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-        {pageLanguage: 'en', 
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        includedLanguages:'ta,hi,te,kn,en'},
-        'google_translate_element'
-    );      
-}
-</script>
-</header>
-
-<div class="header"></div>
-  <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Home delivered Meals in Chennai</h1>
-    <div class="col-lg-6 mx-auto">
-
-      <p id="headerlist" class="lead mb-4">Please select your area in the search box below</p>
+  <div class="px-4 py-3 my-3 text-center">
+    <h1 class="display-5 fw-bold" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serifs;">Home cooked and other meals in Chennai</h1>
+      <p id="headerlist" font="10px">Please select an area below to get a list of people/services providing meals in your area. </br>If you don't find your area in the list, please select the <b>'All over Chennai'</b> option.</p>
       <select class="form-select" id="paid_location_list" aria-label="Default select example" >
         <option value="" selected>Select a location</option>
-      </select>
-    </div>
-   
+        <option value="View Full List">View Full List</option>
+        <option value="All over Chennai">All over Chennai</option>
+        <option value="Adyar">Adyar</option>
+        <option value="Adambakkam">Adambakkam</option>
+        <option value="Alwarpet">Alwarpet</option>
+        <option value="Alwarthirunagar">Alwarthirunagar</option>
+        <option value="Ambattur">Ambattur</option>
+        <option value="Anna Nagar">Anna Nagar</option>
+        <option value="Arumbakkam">Arumbakkam</option>
+        <option value="Ashok Nagar">Ashok Nagar</option>
+        <option value="Avadi">Avadi</option>
+        <option value="Aynavaram">Aynavaram</option>
+        <option value="Besant Nagar">Besant Nagar</option>
+        <option value="Chetpet">Chetpet</option>
+        <option value="Chrompet">Chrompet</option>
+        <option value="Guindy">Guindy</option>
+        <option value="Kilpauk">Kilpauk</option>
+        <option value="KK nagar">KK nagar</option>
+        <option value="Kodambakkam">Kodambakkam</option>
+        <option value="Kolathur">Kolathur</option>
+        <option value="Korattur">Korattur</option>
+        <option value="Kottivakkam">Kottivakkam</option>
+        <option value="Kotturpuram">Kotturpuram</option>
+        <option value="Madipakkam">Madipakkam</option>
+        <option value="Maduravoyal">Maduravoyal</option>
+        <option value="Mandaveli">Mandaveli</option>
+        <option value="Mogappair">Mogappair</option>
+        <option value="Mylapore">Mylapore</option>
+        <option value="Nandanam">Nandanam</option>
+        <option value="Nanganallur">Nanganallur</option>
+        <option value="Nolambur">Nolambur</option>
+        <option value="Nungambakkam">Nungambakkam</option>
+        <option value="Padi">Padi</option>
+        <option value="Pallavaram">Pallavaram</option>
+        <option value="Pallikaranai">Pallikaranai</option>
+        <option value="Perambur">Perambur</option>
+        <option value="RA Puram">RA Puram</option>
+        <option value="Royepettah">Royepettah</option>
+        <option value="Saidapet">Saidapet</option>
+        <option value="Saligramam">Saligramam</option>
+        <option value="Sowkarpet">Sowkarpet</option>
+        <option value="Tambaram">Tambaram</option>
+        <option value="T nagar">T nagar</option>
+        <option value="Thirumullaivoyal">Thirumullaivoyal</option>
+        <option value="Thiruvanmiyur">Thiruvanmiyur</option>
+        <option value="Triplicane">Triplicane</option>
+        <option value="Vadapalani">Vadapalani</option>
+        <option value="Valasaravakkam">Valasaravakkam</option>
+        <option value="Velachery">Velachery</option>
+        <option value="Villivakkam">Villivakkam</option>
+        <option value="West Mambalam">West Mambalam</option>
+      </select>   
   </div>
+  <div id="results" class="px-4 py-2 my-2 text-center" style="display:none">
+    <h3 class="display-8 fw-bold">List of Services</h3>
+    <p class="lead mb-4">Below is the list of people who are available in your selected area</p>
+    <p id="disclaimer" style="font-size: 14px;align-self: center;"><b>*Note*:</b> To anyone who is covid positive and uses delivery platforms (Dunzo, Genie etc), you are required to inform the delivery executive <br/> of your infection status in order to prevent being a potential risk to the delivery executives. </p>
+    <div>
+      <table id="people" class="table table-condensed table-striped table-responsive"></table>
+    </div>
 </div>
 <div class="container">
   <div id="results" class="px-4 py-5 my-5 text-center" style="display:none">
-
     <h3 class="display-8 fw-bold">List of Services</h3>
     <p class="lead mb-4">Below is the list of people who are available in your selected area</p>
     <p id="disclaimer" style="font-size: 14px;align-self: center;"><b>*Note*:</b> To anyone who is covid positive and uses delivery platforms (Dunzo, Genie etc), you are required to inform the delivery executive <br/> of your infection status in order to prevent being a potential risk to the delivery executives. </p>
@@ -62,53 +98,21 @@ function googleTranslateElementInit() {
     </div>
   </div>
 
-
-
   <script type="text/javascript">
     var paidSpreadsheet = 'https://docs.google.com/spreadsheets/d/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/edit#gid=0';
     
     var paidAreas = "https://spreadsheets.google.com/feeds/cells/1ZRr1JrH0xD4WhzGgcg_Z4HMKabeGCIEo_z6vHDGSn_Q/2/public/full?alt=json";
     
-    var paidQuery = 'select B,D,E,F,G,H,I where lower(F) contains ';
+    var paidQuery = 'select C,E,J,K,L,M,N where lower(B) = \'verified\' and lower(H) contains ';
 
-    var paidFullQuery = 'select B,D,E,F,G,H,I';
+    var paidFullQuery = 'select C,E,J,K,L,M,N where lower(B) = \'verified\'';
 
     var paidService = 'Home Delivered Food (Paid)';
     var freeService = 'COVID Meal Program';
     var viewFullList = 'View Full List'
 
-    function add_phone_numbers(error, options, response){
-        if (!error) {
-          var tbody = document.createElement('tbody'); 
-
-          rows = response.rows;     
-
-          rows.forEach(function (row, row_index) {
-
-            var tr = document.createElement('tr');
-            row.cellsArray.forEach(function (cell, cell_index) {
-              var td = document.createElement('td');
-              tr.appendChild(td);
-              var clean_text = cell.trim();
-              //find valid phone numbers in cell data annd add whatsapp link to it
-              if(clean_text.match(/^\d{10}$/)){
-                  td.innerHTML = "<a href='tel:"+cell+"'"+"target='_blank'>"+cell+"</a>";
-                } else {
-                td.innerHTML = cell;
-              } 
-              if(row_index==0)
-              td.innerHTML = "<b>"+cell+"</b>";
-            });
-            tbody.appendChild(tr);
-
-          });
-          $('#people').empty();
-          document.getElementById('people').appendChild(tbody);  
-        }
-      }
-    
-
     function search(val, spreadsheet, squery){
+      $('#noresults').hide();
       $('#results').hide();
       $('#people').empty();
       if(val != ""){
@@ -117,43 +121,13 @@ function googleTranslateElementInit() {
         $('#people').sheetrock({
           url: spreadsheet,
           query: squery,
-          reset: true,
-          callback: add_phone_numbers
+          reset: true
         });
         $('#results').show();
       }
     }
 
-    function getAreaDropdown(dropdown, url){
-      dropdown.empty();
-      dropdown.append('<option selected="true" disabled>Select a Location</option>');
-      dropdown.prop('selectedIndex', 0);
-
-      let xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          let data = JSON.parse(this.responseText).feed.entry
-          let i;
-          for (i = 0; i < data.length; i++) {
-            dropdown.append($('<option></option>').attr('value', data[i]["gs$cell"]["$t"]).text(data[i]["gs$cell"]["$t"]));
-          }
-        };
-      }
-      xmlhttp.open(
-        "GET",
-          url,
-        true
-      );
-      xmlhttp.send(); 
-    }
-
-    $( document ).ready(function() {
-      function googleTranslateElementInit() {
-
-       new google.translate.TranslateElement({ pageLanguage:'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay:false },'google_translate_element');
-
-    }
-
+    $(document ).ready(function() {
       $('.scrollToTop').hide();
       //Check to see if the window is top if not then display button
     $(window).scroll(function(){
@@ -163,10 +137,9 @@ function googleTranslateElementInit() {
             $('.scrollToTop').fadeOut();
         }
     });
+      $('#noresults').hide();
       $('#results').hide();
       $('#disclaimer').hide();
-      getAreaDropdown( $('#paid_location_list'), paidAreas);
-
     });
 
     $("#paid_location_list").change(function(){
@@ -188,21 +161,20 @@ function googleTranslateElementInit() {
   });
   </script>
 </div>
-<div class="px-4 py-5 my-5 text-center">
-  <div class="px-4 py-5 my-5 text-center">
+<div class="px-4 py-3 my-3 text-center">
+  <div class="px-4 py-3 my-3 text-center">
     <p class="lead mb-4" style="font-size:18px">Please click here, if you are:</p>
-    <a href="https://docs.google.com/forms/d/1leui2r49ypJKOfLBfiNf8a_cILBCDuxK58l4pe0WMC8/viewform?edit_requested=true" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   A Meal Provider &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </button></a>&nbsp;&nbsp;
-    <a href="https://docs.google.com/forms/d/11_y3kzherAvShpOa4ZqV4pRRucOfkfNkAlphWc_rVQs/viewform?edit_requested=true" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">Looking for a Food Donor</button></a>
+    <a href="https://bit.ly/foodhelpchennai-signup" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   A Meal Provider &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </button></a>&nbsp;&nbsp;
     <br/>
     <br/>
-    <p class="lead mb-4" style="font-size:18px">Please click here for  <a href="http://bit.ly/mealsformadras" target="_blank" style="font-size:18px"> Meals for Madras (Covid Food Program)</a></p>
+    <p class="lead mb-4" style="font-size:18px">Please click here for  <a href="https://bit.ly/amma-unavagams" target="_blank" style="font-size:18px">Amma Unvagams in Chennai</a></p>
   </div>
   <hr/>
   <p class="lead mb-4 mt-20" style="font-size:14px">
     This information is crowd-sourced. Availability depends on the service provider(s).<br/>
-    Some of these services are free, whereas others are to be paid for. Kindly check for delivery charges; if any exist, please pay the service provider directly.<br/>
-    For all covid-related resources, please visit <a href="http://www.chennaicovidhelp.in/" target="_blank">http://www.chennaicovidhelp.in/</a> | <a href="https://www.instagram.com/covid19chennai/" target="_blank">@covid19chennai</a><br/>
-    Credits : <a href="https://instagram.com/capturesbymurshitha" target="_blank">Murshitha</a>| Development : <a href="https://instagram.com/jayalakshmi.krishnan" target="_blank">Jayalakshmi</a>
+    Kindly check for delivery charges; if any exist, please pay the service provider directly.<br/>
+    For all food delivery sand covid-related resources, please visit <a href="https://www.instagram.com/foodhelpchennai/" target="_blank">@foodhelpchennai</a> | <a href="https://www.instagram.com/newsofchennai/" target="_blank">@newsofchennai</a><br/>
+    Credits : <a href="https://instagram.com/capturesbymurshitha" target="_blank">Murshitha Sheereen</a>, <a href="https://www.instagram.com/shyamsundark/" target="_blank">Shyam Sundar</a>, <a href="https://www.instagram.com/giridhar_venkat7/" target="_blank">Giridhar Venkat</a>, <a href="https://www.instagram.com/ferdina_innocent/" target="_blank">Ferdina Innocent</a> & <a href="https://www.instagram.com/austentoplath/" target="_blank">Aprajitha Suryanarayanan</a>| Development : <a href="https://instagram.com/jayalakshmi.krishnan" target="_blank">Jayalakshmi</a>
 </p> 
 </div>
 </div>
