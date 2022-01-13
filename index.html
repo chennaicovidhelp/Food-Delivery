@@ -8,11 +8,11 @@
   <meta name="generator" content="Jekyll v3.9.0" />
   <meta property="og:title" content="food" />
   <meta property="og:locale" content="en_US" />
-  <link rel="canonical" href="https://covidhelp.github.io/" />
-  <meta property="og:url" content="https://covidhelp.github.io/" />
-  <meta property="og:site_name" content="food-delivery" />
+  <link rel="canonical" href="https://www.foodhelpchennai.in/" />
+  <meta property="og:url" content="https://www.foodhelpchennai.in/" />
+  <meta property="og:site_name" content="Food Help Chennai" />
   <meta name="twitter:card" content="summary" />
-  <meta property="twitter:title" content="food" />
+  <meta property="twitter:title" content="Food Help Chennai" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -111,6 +111,36 @@
     var freeService = 'COVID Meal Program';
     var viewFullList = 'View Full List'
 
+    function add_phone_numbers(error, options, response){
+        if (!error) {
+          var tbody = document.createElement('tbody'); 
+
+          rows = response.rows;     
+
+          rows.forEach(function (row, row_index) {
+
+            var tr = document.createElement('tr');
+            row.cellsArray.forEach(function (cell, cell_index) {
+              var td = document.createElement('td');
+              tr.appendChild(td);
+              var clean_text = cell.trim();
+              //find valid phone numbers in cell data annd add whatsapp link to it
+              if(clean_text.match(/^\d{10}$/)){
+                  td.innerHTML = "<a href='tel:"+cell+"'"+"target='_blank'>"+"<img src='whatsapp.png' style='width: 30px;height: 30px;'/>"+cell+"</a>";
+                } else {
+                td.innerHTML = cell;
+              } 
+              if(row_index==0)
+              td.innerHTML = "<b>"+cell+"</b>";
+            });
+            tbody.appendChild(tr);
+
+          });
+          $('#people').empty();
+          document.getElementById('people').appendChild(tbody);  
+        }
+      }
+    
     function search(val, spreadsheet, squery){
       $('#noresults').hide();
       $('#results').hide();
@@ -121,7 +151,8 @@
         $('#people').sheetrock({
           url: spreadsheet,
           query: squery,
-          reset: true
+          reset: true,
+          callback: add_phone_numbers
         });
         $('#results').show();
       }
