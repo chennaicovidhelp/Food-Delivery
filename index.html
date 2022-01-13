@@ -126,7 +126,7 @@
               var clean_text = cell.trim();
               //find valid phone numbers in cell data annd add whatsapp link to it
               if(clean_text.match(/^\d{10}$/)){
-                  td.innerHTML = "<a href='https://api.whatsapp.com/send/?phone=+91"+cell+"&text=Hey%2C+I+found+your+service+on+www.foodhelpchennai.in+and+I+am+looking+for+home+delivered+food.&app_absent=0'"+"target='_blank'>"+"<img src='whatsapp.png' style='width: 30px;height: 30px;'/>"+cell+"</a>";
+                  td.innerHTML = "<a href='https://api.whatsapp.com/send/?phone=+91"+cell+"&text=Hey%2C+I+found+your+service+on+www.foodhelpchennai.in+and+I+am+looking+for+home+delivered+food.&app_absent=0'"+"target='_blank'><img src='whatsapp.png' style='width: 30px;height: 30px;'/></a><a href='tel:"+cell+"'"+"target='_blank'><img src='call.png' style='width: 30px;height: 30px;'/>"+cell+"</a>";
                 } else {
                 td.innerHTML = cell;
               } 
