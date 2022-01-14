@@ -93,11 +93,11 @@
   </div>
   
 <div class="container">
-  <div id="results" class="px-2 py-3 my-3 text-center">
+  <div id="results" class="px-2 py-1 my-1 text-center">
     <h3 class="display-8 fw-bold">List of Services</h3>
     <p class="lead mb-4" style="font-family: Arial, Helvetica, sans-serif;">Below is the list of people who are available in your selected area</p>
     <p id="disclaimer" style="font-size: 14px;align-self: center;font-family: Arial, Helvetica, sans-serif;"><b>Note:</b> To anyone who is covid positive and uses delivery platforms (Dunzo, Genie etc), you are required to inform the delivery executive <br/> of your infection status in order to prevent being a potential risk to the delivery executives. </p>
-    <table id="people" class="table table-condensed table-responsive" style="font-size: 14px;align-self: center;font-family: Arial, Helvetica, sans-serif;"></table>
+    <table id="people" class="table table-condensed table-hover table-responsive" style="font-size: 14px;align-self: center;font-family: Arial, Helvetica, sans-serif;"></table>
   </div>
 
   <script type="text/javascript">
@@ -122,6 +122,8 @@
           rows.forEach(function (row, row_index) {
 
             var tr = document.createElement('tr');
+            if(row_index==0)
+            tr.bgColor = "#3CB371";
             row.cellsArray.forEach(function (cell, cell_index) {
               var td = document.createElement('td');
               tr.appendChild(td);
@@ -186,7 +188,7 @@
   </script>
 </div>
 <div>
-    <a href="#top" class="scrollToTop" style="position: absolute;right: 0;color: black;"><button class="scrollToTopBtn" style="position: absolute;right: 0;">^</button></a>
+    <a href="#top" class="scrollToTop" style="position: absolute;right: 0;color: black;"><img src='scrollup.jpg' class="scrollToTop" alt="Scroll Up" style='width: 50px;height: 50px;'/></a>
   <script>
        $("a[href='#top']").click(function() {
     $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -194,8 +196,8 @@
   });
   </script>
 </div>
-<div class="px-4 py-3 my-3 text-center">
-  <div class="px-4 py-3 my-3 text-center">
+<div class="px-3 py-2 my-2 text-center">
+  <div class="px-3 py-2 my-2 text-center">
     <p class="lead mb-4" style="font-size:18px;font-family: Arial, Helvetica, sans-serif;">Please click here, if you are a <a href="https://bit.ly/foodhelpchennai-signup" target="_blank">Meal Provider</a></p>
     <p class="lead mb-4" style="font-size:18px;font-family: Arial, Helvetica, sans-serif;">Please click here for  <a href="https://bit.ly/amma-unavagams" target="_blank" style="font-size:18px">Amma Unvagams in Chennai</a></p>
   </div>
