@@ -24,18 +24,20 @@
 }
 
 table {
-    border-collapse: collapse;
     width: 100%;
     margin-right: auto;
     margin-left: auto;
 }
 th {
-    height: 20px;
+    border: 1px solid black;
+    height: auto;
     text-align: center;
     margin-right: auto;
     margin-left: auto;
 }
+
 tr {
+    border: 1px solid black;
     height: auto;
     margin-right: auto;
     margin-left: auto;
@@ -55,7 +57,7 @@ tr {
     top:75px;
     right:40px;
     display:none;
-    background: url('arrow_up.png') no-repeat 0px 20px;
+    background: url('scrollup.jpg') no-repeat 0px 20px;
 }
 .scrollToTop:hover{
     text-decoration:none;
