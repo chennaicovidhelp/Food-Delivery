@@ -26,13 +26,19 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 th {
     height: 20px;
     text-align: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 tr {
     height: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .scrollToTop{
