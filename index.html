@@ -9,6 +9,7 @@
   <meta property="og:title" content="food" />
   <meta property="og:locale" content="en_US" />
   <link rel="canonical" href="https://www.foodhelpchennai.in/" />
+  <link rel="shortcut icon" type="image/x-icon" href="fhc-favicon.png" />
   <meta property="og:url" content="https://www.foodhelpchennai.in/" />
   <meta property="og:site_name" content="Food Help Chennai" />
   <meta name="twitter:card" content="summary" />
@@ -23,7 +24,7 @@
 </head>
 <body>
   <div class="px-4 py-3 my-3 text-center">
-    <h3 class="display-5 fw-bold" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serifs;">Home cooked and other meals in Chennai</h3>
+    <img src='fhc-banner.png' alt="Food Help Chennai Banner" style="width: 90%;height: auto;"/>
       <p id="headerlist" font="10px">Please select an area below to get a list of people/services providing meals in your area. </br>If you don't find your area in the list, please select the <b>'All over Chennai'</b> option.</p>
       <select class="form-select" id="paid_location_list" aria-label="Default select example" >
         <option value="" selected>Select a location</option>
@@ -93,7 +94,7 @@
   <div id="results" class="px-4 py-2 my-2 text-center" style="display:none">
     <h3 class="display-8 fw-bold">List of Services</h3>
     <p class="lead mb-4">Below is the list of people who are available in your selected area</p>
-    <p id="disclaimer" style="font-size: 14px;align-self: center;"><b>*Note*:</b> To anyone who is covid positive and uses delivery platforms (Dunzo, Genie etc), you are required to inform the delivery executive <br/> of your infection status in order to prevent being a potential risk to the delivery executives. </p>
+    <p id="disclaimer" style="font-size: 14px;align-self: center;"><b>Note:</b> To anyone who is covid positive and uses delivery platforms (Dunzo, Genie etc), you are required to inform the delivery executive <br/> of your infection status in order to prevent being a potential risk to the delivery executives. </p>
     <div>
       <table id="people" class="table table-condensed table-striped table-responsive"></table>
     </div>
@@ -136,7 +137,7 @@
               var clean_text = cell.trim();
               //find valid phone numbers in cell data annd add whatsapp link to it
               if(clean_text.match(/^\d{10}$/)){
-                  td.innerHTML = "<a href='https://api.whatsapp.com/send/?phone=+91"+cell+"&text=Hey%2C+I+found+your+service+on+www.foodhelpchennai.in+and+I+am+looking+for+home+delivered+food.&app_absent=0'"+"target='_blank'><img src='whatsapp.png' style='width: 30px;height: 30px;'/></a><a href='tel:"+cell+"'"+"target='_blank'><img src='call.png' style='width: 30px;height: 30px;'/>"+cell+"</a>";
+                  td.innerHTML = "<a href='https://api.whatsapp.com/send/?phone=+91"+cell+"&text=Hey%2C+I+found+your+service+on+www.foodhelpchennai.in+and+I+am+looking+for+home+delivered+food.&app_absent=0'"+"target='_blank'><img src='whatsapp.png' style='width: 30px;height: 30px;'/></a><a href='tel:"+cell+"'"+"target='_blank'><img src='phone.png' style='width: 30px;height: 30px;'/>"+cell+"</a>";
                 } else {
                 td.innerHTML = cell;
               } 
@@ -204,10 +205,7 @@
 </div>
 <div class="px-4 py-3 my-3 text-center">
   <div class="px-4 py-3 my-3 text-center">
-    <p class="lead mb-4" style="font-size:18px">Please click here, if you are:</p>
-    <a href="https://bit.ly/foodhelpchennai-signup" target="_blank"><button style="border-radius: 10px; text-size-adjust: 10;font-size:14px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   A Meal Provider &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; </button></a>&nbsp;&nbsp;
-    <br/>
-    <br/>
+    <p class="lead mb-4" style="font-size:18px">Please click here, if you are a <a href="https://bit.ly/foodhelpchennai-signup" target="_blank">Meal Provider</a></p>
     <p class="lead mb-4" style="font-size:18px">Please click here for  <a href="https://bit.ly/amma-unavagams" target="_blank" style="font-size:18px">Amma Unvagams in Chennai</a></p>
   </div>
   <hr/>
@@ -215,7 +213,7 @@
     This information is crowd-sourced. Availability depends on the service provider(s).<br/>
     Kindly check for delivery charges; if any exist, please pay the service provider directly.<br/>
     For all food delivery and covid-related resources, please visit <a href="https://www.instagram.com/foodhelpchennai/" target="_blank">@foodhelpchennai</a> | <a href="https://www.instagram.com/newsofchennai/" target="_blank">@newsofchennai</a><br/>
-    Credits : <a href="https://instagram.com/capturesbymurshitha" target="_blank">Murshitha Sheereen</a>, <a href="https://www.instagram.com/ferdina_innocent/" target="_blank">Ferdina Innocent</a>, <a href="https://www.instagram.com/austentoplath/" target="_blank">Aprajitha Suryanarayanan</a> & <a href="https://twitter.com/shyamsundark" target="_blank">Shyam Sundar</a> | Development : <a href="https://instagram.com/jayalakshmi.krishnan" target="_blank">Jayalakshmi</a>
+   Team : <a href="https://instagram.com/capturesbymurshitha" target="_blank">Murshitha Sheereen</a>, <a href="https://www.instagram.com/ferdina_innocent/" target="_blank">Ferdina Innocent</a>, <a href="https://www.instagram.com/austentoplath/" target="_blank">Aprajitha Suryanarayanan</a> & <a href="https://twitter.com/shyamsundark" target="_blank">Shyam Sundar</a> | Development : <a href="https://instagram.com/jayalakshmi.krishnan" target="_blank">Jayalakshmi</a>
 </p> 
 </div>
 </div>
